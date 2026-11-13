@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "zeriy-owner-mobile",
+    "name": "Zeriy Owner",
     "slug": "zeriy-owner-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,16 +8,42 @@
     "scheme": "zeriyownermobile",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Zeriy Owner uses your location once, when you create your account, to set your shop's location."
+      }
     },
     "android": {
+      "package": "com.zeriy.owner",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ],
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#080824",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ],
+          "data": [
+            {
+              "scheme": "zeriyownermobile",
+              "host": "auth",
+              "pathPrefix": "/callback"
+            }
+          ]
+        }
+      ]
     },
     "web": {
       "output": "server",
@@ -28,15 +54,34 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#080824",
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "imageWidth": 350
         }
-      ]
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Zeriy Owner uses your location once, when you create your account, to set your shop's location."
+        }
+      ],
+      "expo-secure-store",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "98602a59-9b81-47c8-9331-c32ba86783b3"
+      }
+    },
+    "owner": "zeriy2026s-team"
   }
 }
